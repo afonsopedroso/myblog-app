@@ -38,13 +38,13 @@ export default function Home({posts}:Post) {
   const allHashtags = [...new Set(posts.flatMap(post => generateHashtags(post.title)))].slice(0,10);
 
   return (
-    <div className="grid  grid-rows-[30px_1fr_30px] items-center justify-items-center min-h-screen px-8 md:px-16  pb-20 gap-12 pt-24 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid  grid-rows-[30px_1fr_30px] pb-[40rem] items-center justify-items-center min-h-screen px-8 md:px-16  gap-12 pt-24 font-[family-name:var(--font-geist-sans)]">
       <div className="text-white font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-4"><div><h1>My Blog List</h1></div>
         <div className="text-[9px] md:text-sm">
           <div className="pb-1"> 
             <span className="">Search: {" "} 
             {selectedTag.length > 0 && selectedTag.length <= 5 ? selectedTag.map((tag, index) => (
-              <span key={index} className="bg-gray-200 text-blacks px-2 py-1 rounded mx-1">
+              <span key={index} className="bg-blue-500 text-blacks px-2 py-1 rounded mx-1">
                 {tag}
               </span>
             )): "No tags selected"}
