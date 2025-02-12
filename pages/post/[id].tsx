@@ -31,7 +31,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }:any) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+   if (!params || typeof params.id !== "string") {
+    return { notFound: true }; 
+  }
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
   const post = await res.json();
 
