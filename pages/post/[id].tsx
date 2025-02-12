@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from "next";
-import {Post_, Post } from "../index"
+import {Post_ } from "../index"
 import Link from "next/link";
 
 
