@@ -3,7 +3,6 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
 export interface Post_{
   userId: number
   id:number
