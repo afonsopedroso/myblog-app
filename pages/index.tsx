@@ -39,19 +39,24 @@ export default function Home({posts}:Post) {
 
   return (
     <div className="grid  grid-rows-[30px_1fr_30px] pb-[40rem] items-center justify-items-center min-h-screen px-8 md:px-16  gap-12 pt-24 font-[family-name:var(--font-geist-sans)]">
-      <div className="text-white font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-4"><div><h1>My Blog List</h1></div>
+      
+      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-4"><div><h1>My Blog List</h1></div>
         <div className="text-[9px] md:text-sm">
-          <div className="pb-1"> 
-            <span className="">Search: {" "} 
-            {selectedTag.length > 0 && selectedTag.length <= 5 ? selectedTag.map((tag, index) => (
-              <span key={index} className="bg-blue-500 text-blacks px-2 py-1 rounded mx-1">
-                {tag}
-              </span>
-            )): "No tags selected"}
-          </span>
+          <div className="pb-1 "> 
+            <div className="">Search: {selectedTag.length != 0? '': 'No selected tags'} 
+            <div className="grid grid-cols-3 gap-1">
+                {selectedTag.length > 0 && selectedTag.length <= 5 && (
+                  selectedTag.map((tag, index) => (
+                    <div key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center px-2 py-1 rounded mx-1 text-center">
+                      {tag}
+                    </div>
+                  ))
+                  ) }
+              </div>           
           </div>
-          
-          <div className="mb-4 grid grid-cols-3 md:grid-cols-4 ">
+          </div>
+          <div className="flex flex-col">
+            <div className="mb-4 grid grid-cols-3 md:grid-cols-4 ">
             {allHashtags.map((tag) => (              
             <button key={tag} disabled={selectedTag.length>=5 && !selectedTag.includes(tag)} onClick={() =>
                 setSelectedTag(prevTags =>
@@ -70,9 +75,11 @@ export default function Home({posts}:Post) {
           </button>
         )}
           </div>
+          </div>
+          
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mt-5 md:mt-0 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mt-12 md:mt-0 ">
       {filteredPosts.map((post:Post_) => (
         <div key={post.id} className="rounded-xl flex flex-col justify-between bg-white shadow-md p-4 mx-4 my-4"><Link href={`/post/${post.id}`} className="text-xl font-semibold">{post.title}</Link>
           <p className="text-gray-600">

@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, [router]);
   return <div className="bg-purple-800">{loading && <LoadingSpinner />}
-  <div className="md:px-[5rem] px-[2.9rem] py-5 font-bold  text-blue-600">
+  <div className="md:px-[5rem] px-[2.9rem] text-2xl pt-5 pb-9 font-bold  text-blue-600">
   <Link className="pr-2 active:text-green-400" href="/">Home</Link><Link className="active:text-green-400"  href="/about">About</Link></div>
   <Component {...pageProps} />;</div>
 }
