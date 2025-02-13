@@ -55,9 +55,9 @@ revalidate to 60 seconds, leading to geting fresh data without a full rebuild
 
 ## Responsive Design using Tailwind CSS
 
-Grid Layout adapts to different screen sizes:
-*Single-column layout on mobile
-*Multi-column layout on larger screens
+- Grid Layout adapts to different screen sizes:
+    - Single-column layout on mobile
+    - Multi-column layout on larger screens
 
 ## Navigation and Links
 
