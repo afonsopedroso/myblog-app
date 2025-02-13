@@ -1,6 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import {Post_ } from "../index"
 import Link from "next/link";
+import {  useEffect } from "react";
+
 type PostDetailsProps = {
   post: Post_;
 };
@@ -8,6 +10,7 @@ type PostDetailsProps = {
 
 
 export default function PostDetails({post}:PostDetailsProps) {
+  
   return (
     <div className="flex flex-col justify-start items-center bg-slate-600 h-[100vh] pt-8 mx-1 p-4">
         <div className="max-w-[570px] bg-black rounded-md px-5 py-5">

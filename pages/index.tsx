@@ -96,11 +96,11 @@ export default function Home({posts}:Post) {
       </div>
       <div className="grid items-start grid-cols-1 md:grid-cols-3 lg:grid-cols-5 md:mt-0 ">
       {filteredPosts.map((post:Post_) => (
-        <div key={post.id} className="rounded-xl flex min-h-[270px] flex-col justify-between shadow-gray-900 bg-white shadow-md p-4 mx-4 my-4"><Link href={`/post/${post.id}`} scroll={false} className="text-xl font-semibold">{post.title}</Link>
+        <div key={post.id} className="rounded-xl flex min-h-[270px] flex-col justify-between shadow-gray-900 bg-white shadow-md p-4 mx-4 my-4"><Link href={`/post/${post.id}`} scroll={true} className="text-xl font-semibold">{post.title}</Link>
           <p className="text-gray-600">
                 {post.body.substring(0, 100)}...
           </p>
-        <Link onClick={handleSaveScroll} scroll={false} href={`/post/${post.id}`} className="text-blue-500 mt-auto">Read More</Link>        
+        <Link onClick={handleSaveScroll} scroll={true} href={`/post/${post.id}`} className="text-blue-500 mt-auto">Read More</Link>        
       </div>        
       ))}  
       </div>
