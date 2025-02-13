@@ -1,7 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import {Post_ } from "../index"
 import Link from "next/link";
-import {  useEffect } from "react";
 
 type PostDetailsProps = {
   post: Post_;
