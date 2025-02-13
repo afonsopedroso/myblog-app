@@ -3,6 +3,7 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import ScrollToTop from "../components/scrollToTop"
 export interface Post_{
   userId: number
   id:number
@@ -38,12 +39,12 @@ export default function Home({posts}:Post) {
   const allHashtags = [...new Set(posts.flatMap(post => generateHashtags(post.title)))].slice(0,10);
 
   return (
-    <div className="grid  grid-rows-[30px_1fr_30px] pb-[40rem] items-center justify-items-center min-h-screen px-8 md:px-16  gap-12 pt-24 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-auto items-start justify-items-start px-4 md:px-16 font-[family-name:var(--font-geist-sans)]">
       
-      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-4"><div><h1>My Blog List</h1></div>
-        <div className="text-[9px] md:text-sm">
-          <div className="pb-1 "> 
-            <div className="">Search: {selectedTag.length != 0? '': 'No selected tags'} 
+      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-4"><div className="pb-1 pl-1"><h1>My Blog List</h1></div>
+        <div className="text-xs md:text-sm">
+          <div className="pb-1  "> 
+            <div className="pb-1"><span className="pl-1">Search: {selectedTag.length != 0? '': 'No selected tags'} </span>
             <div className="grid grid-cols-3 gap-1">
                 {selectedTag.length > 0 && selectedTag.length <= 5 && (
                   selectedTag.map((tag, index) => (
@@ -79,7 +80,7 @@ export default function Home({posts}:Post) {
           
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mt-12 md:mt-0 ">
+      <div className="grid items-start grid-cols-1 md:grid-cols-3 lg:grid-cols-5 md:mt-0 ">
       {filteredPosts.map((post:Post_) => (
         <div key={post.id} className="rounded-xl flex flex-col justify-between bg-white shadow-md p-4 mx-4 my-4"><Link href={`/post/${post.id}`} className="text-xl font-semibold">{post.title}</Link>
           <p className="text-gray-600">
@@ -89,7 +90,7 @@ export default function Home({posts}:Post) {
       </div>        
       ))}  
       </div>
-      
+      <ScrollToTop />
     </div>
   );
 }
