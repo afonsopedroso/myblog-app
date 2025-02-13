@@ -63,3 +63,7 @@ revalidate to 60 seconds, leading to geting fresh data without a full rebuild
 
 Using next/link for client-side navigation
 Clicking a post title or the "Read More" tag navigates to a dynamic route "/post/[id]"
+
+## Usage of React Context
+
+Holding the values of the tags selected on react context to presist state through route change

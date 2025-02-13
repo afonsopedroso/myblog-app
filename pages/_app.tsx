@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const isActive = (path: string): string =>
-    router.pathname === path ? "text-white  font-bold underline" : "text-white";
+    router.pathname === path ? "text-white  font-bold" : "text-white";
 
   useEffect(() => {
     const handleStart = () => setLoading(true);
