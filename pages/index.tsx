@@ -4,6 +4,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ScrollToTop from "../components/ScrollToTop.jsx"
+import { useAppContext } from "../context/AppContext";
 export interface Post_{
   userId: number
   id:number
@@ -25,7 +26,7 @@ const generateHashtags = (text:string) => {
 
 
 export default function Home({posts}:Post) {
-  const [selectedTag, setSelectedTag] = useState<string[]>([]);
+  const {selectedTag, setSelectedTag} = useAppContext();
   const [filteredPosts, setFilteredPosts] = useState<Post_[]>([]); 
    
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function Home({posts}:Post) {
             <div className="pb-1"><span className="pl-1">Search: {selectedTag.length != 0? '': 'No selected tags'} </span>
             <div className="grid grid-cols-3 gap-[2px]">
                 {selectedTag.length > 0 && selectedTag.length <= 5 && (
-                  selectedTag.map((tag, index) => (
+                  selectedTag.map((tag:string, index:number) => (
                     <div key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center  py-1 rounded mx-[1px] text-center">
                       {tag}
                     </div>
@@ -60,9 +61,9 @@ export default function Home({posts}:Post) {
             <div className="mb-4 grid grid-cols-3 md:grid-cols-4 ">
             {allHashtags.map((tag) => (              
             <button key={tag} disabled={selectedTag.length>=5 && !selectedTag.includes(tag)} onClick={() =>
-                setSelectedTag(prevTags =>
+                setSelectedTag((prevTags:string[]) =>
                   prevTags.includes(tag)
-                    ? prevTags.filter(t => t !== tag) 
+                    ? prevTags.filter((t:string) => t !== tag) 
                     : [...prevTags, tag] 
                 )
               } 

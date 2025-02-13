@@ -1,10 +1,13 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import { useRouter } from "next/router";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Link from "next/link";
 import PageTransition from "@/components/PageStransition";
+import { AppProvider } from "@/context/AppContext";
+
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -24,7 +27,8 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeError", handleComplete);
     };
   }, [router]);
-  return <div className="bg-slate-600 min-h-screen">{loading && <LoadingSpinner />}
+  return <AppProvider>
+   <div className="bg-slate-600 min-h-screen">{loading && <LoadingSpinner />}
       <div className="md:px-[5rem] px-[1.2rem] text-2xl pt-5 pb-5">
         <Link className={`pr-2  active:text-green-400 ${isActive("/")}`} href="/">Home</Link>
         <Link className={`active:text-green-400 ${isActive("/about")}`}  href="/about">About</Link>´
@@ -33,5 +37,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <Component {...pageProps} />;
     </PageTransition>
   </div>
+  </AppProvider>
 
 }
