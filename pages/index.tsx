@@ -40,6 +40,7 @@ export default function Home({posts}:Post) {
         window.scrollTo(0, parseInt(savedScroll))
       },100)
       window.scrollTo({ top: parseInt(savedScroll), behavior: "smooth" });
+      sessionStorage.clear()
       console.log("Scrolled Past")
     }
     if (selectedTag.length==0) {
