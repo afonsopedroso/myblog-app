@@ -71,7 +71,7 @@ export default function Home({posts}:Post) {
               selectedTag.includes(tag) ? "bg-green-500 text-white" : "bg-black"
             }`}>{tag}</button>
             ))}
-            {selectedTag && (
+            {selectedTag.length!=0 && (
           <button onClick={() => setSelectedTag([])} className="ml-[2px] mt-[2px] bg-red-200 rounded-md h-8 text-red-500">
             Clear
           </button>
