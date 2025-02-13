@@ -38,3 +38,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+## Hashtags generated
+
+Filtered common words that are used and then selected 10 words to use as hashtags.
+
+Users can select up to 5 hastags to filter posts
+
+Can remove each tag clicking on the selected tag or the clear button
+
+## Static Site Generation 
+
+Using getStaticProps to fetch posts on building time
+
+revalidate to 60 seconds, leading to geting fresh data without a full rebuild
+
+## Responsive Design using Tailwind CSS
+
+Grid Layout adapts to different screen sizes:
+*Single-column layout on mobile
+*Multi-column layout on larger screens
+
+## Navigation and Links
+
+Using next/link for client-side navigation
+Clicking a post title or the "Read More" tag navigates to a dynamic route "/post/[id]"
