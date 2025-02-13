@@ -3,7 +3,7 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import ScrollToTop from "../components/scrollToTop"
+import ScrollToTop from "../components/scrollToTop.jsx"
 export interface Post_{
   userId: number
   id:number
