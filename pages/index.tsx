@@ -28,8 +28,20 @@ const generateHashtags = (text:string) => {
 export default function Home({posts}:Post) {
   const {selectedTag, setSelectedTag} = useAppContext();
   const [filteredPosts, setFilteredPosts] = useState<Post_[]>([]); 
-   
+  
+  const handleSaveScroll = () => {    
+    sessionStorage.setItem("scrollY", window.scrollY.toString())
+  }
   useEffect(() => {
+    const savedScroll = sessionStorage.getItem("scrollY");
+    if(savedScroll){
+      console.log("Scroll to", savedScroll)
+      setTimeout(()=> {
+        window.scrollTo(0, parseInt(savedScroll))
+      },100)
+      window.scrollTo({ top: parseInt(savedScroll), behavior: "smooth" });
+      console.log("Scrolled Past")
+    }
     if (selectedTag.length==0) {
       setFilteredPosts(posts);
     } else {
@@ -45,7 +57,7 @@ export default function Home({posts}:Post) {
       <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-2"><div className="pb-1 pl-1"><h1>My Blog List</h1></div>
         <div className="text-xs md:text-sm">
           <div className="pb-1  "> 
-            <div className="pb-1"><span className="pl-1">Search: {selectedTag.length != 0? '': 'No selected tags'} </span>
+            <div className="pb-1"><span className="pl-1 ">Search: <span className="font-normal text-gray-200">{selectedTag.length != 0? '': 'No selected tags'}</span> </span>
             <div className="grid grid-cols-3 gap-[2px]">
                 {selectedTag.length > 0 && selectedTag.length <= 5 && (
                   selectedTag.map((tag:string, index:number) => (
@@ -74,7 +86,7 @@ export default function Home({posts}:Post) {
             ))}
             {selectedTag.length!=0 && (
           <button onClick={() => setSelectedTag([])} className="ml-[2px] mt-[2px] bg-red-500 rounded-md h-8 text-red-500">
-            <div className="flex justify-center items-center"> <img className="w-6 h-5 pl-1" src="/bin.png" alt="" /></div>     
+            <div className="flex justify-center items-center"> <img className="w-5 h-5 pl-1" src="/bin.png" alt="" /></div>     
           </button>
         )}
           </div>
@@ -88,7 +100,7 @@ export default function Home({posts}:Post) {
           <p className="text-gray-600">
                 {post.body.substring(0, 100)}...
           </p>
-        <Link href={`/post/${post.id}`} className="text-blue-500 mt-auto">Read More</Link>        
+        <Link onClick={handleSaveScroll} scroll={false} href={`/post/${post.id}`} className="text-blue-500 mt-auto">Read More</Link>        
       </div>        
       ))}  
       </div>

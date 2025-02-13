@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
    <div className="bg-slate-600 min-h-screen">{loading && <LoadingSpinner />}
       <div className="md:px-[4.6rem] px-[1.2rem] text-2xl pt-5 pb-5">
         <Link className={`pr-2  active:text-green-400 ${isActive("/")}`} href="/">Home</Link>
-        <Link className={`active:text-green-400 ${isActive("/about")}`}  href="/about">About</Link>´
+        <Link scroll={false} className={`active:text-green-400 ${isActive("/about")}`}  href="/about">About</Link>´
       </div>
       <PageTransition key={router.route}>
     <Component {...pageProps} />;
