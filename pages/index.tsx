@@ -39,16 +39,16 @@ export default function Home({posts}:Post) {
   const allHashtags = [...new Set(posts.flatMap(post => generateHashtags(post.title)))].slice(0,10);
 
   return (
-    <div className="grid grid-rows-auto items-start justify-items-start px-4 md:px-16 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-auto items-start justify-items-start px-2 md:px-16 font-[family-name:var(--font-geist-sans)]">
       
-      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-4"><div className="pb-1 pl-1"><h1>My Blog List</h1></div>
+      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-2"><div className="pb-1 pl-1"><h1>My Blog List</h1></div>
         <div className="text-xs md:text-sm">
           <div className="pb-1  "> 
             <div className="pb-1"><span className="pl-1">Search: {selectedTag.length != 0? '': 'No selected tags'} </span>
-            <div className="grid grid-cols-3 gap-1">
+            <div className="grid grid-cols-3 gap-[2px]">
                 {selectedTag.length > 0 && selectedTag.length <= 5 && (
                   selectedTag.map((tag, index) => (
-                    <div key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center px-2 py-1 rounded mx-1 text-center">
+                    <div key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center  py-1 rounded mx-[1px] text-center">
                       {tag}
                     </div>
                   ))
@@ -66,12 +66,12 @@ export default function Home({posts}:Post) {
                     : [...prevTags, tag] 
                 )
               } 
-              className={`px-1 h-7 flex items-center justify-center py-1 m-1 border rounded ${
+              className={`px-1 h-7 flex items-center justify-center py-1 m-[2px] border rounded ${
               selectedTag.includes(tag) ? "bg-green-500 text-white" : "bg-black"
             }`}>{tag}</button>
             ))}
             {selectedTag && (
-          <button onClick={() => setSelectedTag([])} className="ml-2 mt-1 bg-red-200 rounded-md h-7 text-red-500">
+          <button onClick={() => setSelectedTag([])} className="ml-[2px] mt-[2px] bg-red-200 rounded-md h-7 text-red-500">
             Clear
           </button>
         )}
