@@ -67,14 +67,14 @@ export default function Home({posts}:Post) {
                     : [...prevTags, tag] 
                 )
               } 
-              className={`px-1 h-7 flex items-center justify-center py-4 m-[2px] border rounded ${
+              className={`px-1 h-8 flex items-center justify-center py-4 m-[2px] border rounded ${
               selectedTag.includes(tag) ? "bg-green-500 text-white" : selectedTag.length >= 5 
               ? 'bg-slate-500' : 'bg-black'
             }`} >{tag}</button>
             ))}
             {selectedTag.length!=0 && (
-          <button onClick={() => setSelectedTag([])} className="ml-[2px] mt-[2px] bg-red-200 rounded-md h-8 text-red-500">
-            <div className="flex justify-center items-center"><span>Clear</span>  <img className="w-8 h-6 pl-1" src="/clear.png" alt="" /></div>     
+          <button onClick={() => setSelectedTag([])} className="ml-[2px] mt-[2px] bg-red-500 rounded-md h-8 text-red-500">
+            <div className="flex justify-center items-center"> <img className="w-6 h-5 pl-1" src="/bin.png" alt="" /></div>     
           </button>
         )}
           </div>
