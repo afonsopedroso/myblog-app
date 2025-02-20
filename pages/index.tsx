@@ -31,11 +31,14 @@ export default function Home({posts}:Post) {
   const [inputValue, setInputValue] = useState("");
   
   const handleChangeText = () => {
+    let hashtagSelected = `#${inputValue}`
+    
     setSelectedTag((prevTags:string[]) =>
-      prevTags.includes(inputValue)
-        ? prevTags.filter((t:string) => t !== inputValue) 
-        : [...prevTags, inputValue] 
+      prevTags.includes(hashtagSelected)
+        ? prevTags.filter((t:string) => t !== hashtagSelected) 
+        : [...prevTags, hashtagSelected] 
       )
+      setInputValue("")
   }
   const handleSaveScroll = () => {    
     sessionStorage.setItem("scrollY", window.scrollY.toString())
@@ -68,7 +71,7 @@ export default function Home({posts}:Post) {
           <h1>My Blog List</h1>
           <div>
             <input className="border border-gray-300 rounded-lg px-4 py-2 w-64 placeholder:text-sm text-sm text-black bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Add New Hashtag"/>
-            <button className="text-xs shadow-md ml-2 px-2 py-[11px] rounded-md bg-blue-600" onClick={handleChangeText}>Submit</button>
+            <button className="text-xs shadow-md ml-2 px-2 py-[11px] rounded-md bg-blue-600" disabled={inputValue == ""}  onClick={handleChangeText}>Submit</button>
           </div>
         </div>
         <div className="text-xs md:text-sm">
