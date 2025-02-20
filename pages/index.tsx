@@ -67,12 +67,12 @@ export default function Home({posts}:Post) {
     <div className="grid grid-rows-auto items-start justify-items-start px-2 md:px-16 font-[family-name:var(--font-geist-sans)]">
       
       <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-2">
-        <div className="pb-1 pl-1 flex justify-between">
-          <h1>My Blog List</h1>
+        <div className="pb-1 pl-1 flex justify-between md:block ">
+          <h1 className="pb-0 sm:pb-1">My Blog List</h1>
           <div>
-            <input className="border border-gray-300 rounded-lg px-4 py-2 w-64 placeholder:text-sm text-sm text-black bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Add New Hashtag"/>
+           <input className="border border-gray-300 rounded-lg px-4 py-2 w-28 sm:w-40 md:w-44 placeholder:sm:text-sm placeholder:text-xs text-sm text-black bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Add New Hashtag"/>
             <button className="text-xs shadow-md ml-2 px-2 py-[11px] rounded-md bg-blue-600" disabled={inputValue == ""}  onClick={handleChangeText}>Submit</button>
-          </div>
+          </div> 
         </div>
         <div className="text-xs md:text-sm">
           <div className="pb-1  "> 
