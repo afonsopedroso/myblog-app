@@ -29,7 +29,9 @@ export default function Home({posts}:Post) {
   const {selectedTag, setSelectedTag} = useAppContext();
   const [filteredPosts, setFilteredPosts] = useState<Post_[]>([]); 
   const [inputValue, setInputValue] = useState("");
-  
+  const removeTag = (index: number) => {
+    setSelectedTag((prevItems: []) => prevItems.filter((_,i) => i !== index))
+  }
   const handleChangeText = () => {
     const hashtagSelected = `#${inputValue}`
     
@@ -57,6 +59,7 @@ export default function Home({posts}:Post) {
     if (selectedTag.length==0) {
       setFilteredPosts(posts);
     } else {
+      console.log(posts.map(post => console.log(post.title, selectedTag)))
       setFilteredPosts(posts.filter(post => generateHashtags(post.title).some(tag => selectedTag.includes(tag))));
     }
   }, [selectedTag, posts])
@@ -77,10 +80,10 @@ export default function Home({posts}:Post) {
         <div className="text-xs md:text-sm">
           <div className="pb-1  "> 
             <div className="pb-1"><span className="pl-1 ">Search: <span className="font-normal text-gray-200">{selectedTag.length != 0? '': 'No selected tags'}</span> </span>
-            <div className="grid grid-cols-3 gap-[2px]">
+            <div  className="grid grid-cols-3 gap-[2px]">
                 {selectedTag.length > 0 && (
                   selectedTag.map((tag:string, index:number) => (
-                    <div key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center  py-1 rounded mx-[1px] text-center">
+                    <div onClick={() => removeTag(index)} key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center  py-1 rounded mx-[1px] text-center">
                       {tag}
                     </div>
                   ))
