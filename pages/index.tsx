@@ -20,7 +20,7 @@ const generateHashtags = (text:string) => {
   if(!text) return []
   const words_ = text.split(" ")
   const commonWords = ["the", "is", "and", "or", "of", "to", "in", "on", "at", "with"];
-  return words_.filter(word => word.length > 3 && !commonWords.includes(word.toLowerCase()))
+  return words_.filter(word => !commonWords.includes(word.toLowerCase()))
                .map(word=>`#${word.toLowerCase()}`);
 }
 
@@ -40,7 +40,7 @@ export default function Home({posts}:Post) {
     setSelectedTag((prevTags:string[]) =>
       prevTags.includes(hashtagSelected)
         ? prevTags.filter((t:string) => t !== hashtagSelected) 
-        : [...prevTags, hashtagSelected] 
+        : [...prevTags, hashtagSelected.toLocaleLowerCase()] 
       )
       setInputValue("")
   }
