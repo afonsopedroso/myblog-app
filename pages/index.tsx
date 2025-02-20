@@ -29,9 +29,11 @@ export default function Home({posts}:Post) {
   const {selectedTag, setSelectedTag} = useAppContext();
   const [filteredPosts, setFilteredPosts] = useState<Post_[]>([]); 
   const [inputValue, setInputValue] = useState("");
+
   const removeTag = (index: number) => {
     setSelectedTag((prevItems: []) => prevItems.filter((_,i) => i !== index))
   }
+
   const handleChangeText = () => {
     const hashtagSelected = `#${inputValue}`
     
@@ -59,7 +61,6 @@ export default function Home({posts}:Post) {
     if (selectedTag.length==0) {
       setFilteredPosts(posts);
     } else {
-      console.log(posts.map(post => console.log(post.title, selectedTag)))
       setFilteredPosts(posts.filter(post => generateHashtags(post.title).some(tag => selectedTag.includes(tag))));
     }
   }, [selectedTag, posts])
