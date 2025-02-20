@@ -28,7 +28,15 @@ const generateHashtags = (text:string) => {
 export default function Home({posts}:Post) {
   const {selectedTag, setSelectedTag} = useAppContext();
   const [filteredPosts, setFilteredPosts] = useState<Post_[]>([]); 
+  const [inputValue, setInputValue] = useState("");
   
+  const handleChangeText = () => {
+    setSelectedTag((prevTags:string[]) =>
+      prevTags.includes(inputValue)
+        ? prevTags.filter((t:string) => t !== inputValue) 
+        : [...prevTags, inputValue] 
+      )
+  }
   const handleSaveScroll = () => {    
     sessionStorage.setItem("scrollY", window.scrollY.toString())
   }
@@ -55,12 +63,19 @@ export default function Home({posts}:Post) {
   return (
     <div className="grid grid-rows-auto items-start justify-items-start px-2 md:px-16 font-[family-name:var(--font-geist-sans)]">
       
-      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-2"><div className="pb-1 pl-1"><h1>My Blog List</h1></div>
+      <div className="text-white min-h-[270px] md:min-h-[250px] font-bold w-full md:flex md:flex-row flex-col  justify-between text-xl px-2">
+        <div className="pb-1 pl-1 flex justify-between">
+          <h1>My Blog List</h1>
+          <div>
+            <input className="border border-gray-300 rounded-lg px-4 py-2 w-64 placeholder:text-sm text-sm text-black bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Add New Hashtag"/>
+            <button className="text-xs shadow-md ml-2 px-2 py-[11px] rounded-md bg-blue-600" onClick={handleChangeText}>Submit</button>
+          </div>
+        </div>
         <div className="text-xs md:text-sm">
           <div className="pb-1  "> 
             <div className="pb-1"><span className="pl-1 ">Search: <span className="font-normal text-gray-200">{selectedTag.length != 0? '': 'No selected tags'}</span> </span>
             <div className="grid grid-cols-3 gap-[2px]">
-                {selectedTag.length > 0 && selectedTag.length <= 5 && (
+                {selectedTag.length > 0 && (
                   selectedTag.map((tag:string, index:number) => (
                     <div key={index} className="bg-blue-500 max-h-[26px] text-white flex items-center justify-center  py-1 rounded mx-[1px] text-center">
                       {tag}
@@ -73,7 +88,7 @@ export default function Home({posts}:Post) {
           <div className="flex flex-col">
             <div className="mb-4 grid grid-cols-3 md:grid-cols-4 ">
             {allHashtags.map((tag) => (              
-            <button key={tag} disabled={selectedTag.length>=5 && !selectedTag.includes(tag)} onClick={() =>
+            <button key={tag} onClick={() =>
                 setSelectedTag((prevTags:string[]) =>
                   prevTags.includes(tag)
                     ? prevTags.filter((t:string) => t !== tag) 
@@ -81,8 +96,7 @@ export default function Home({posts}:Post) {
                 )
               } 
               className={`px-1 h-8 flex items-center justify-center py-4 m-[2px] border rounded ${
-              selectedTag.includes(tag) ? "bg-green-500 text-white" : selectedTag.length >= 5 
-              ? 'bg-slate-500' : 'bg-black'
+              selectedTag.includes(tag) ? "bg-green-500 text-white" : 'bg-black'
             }`} >{tag}</button>
             ))}
             {selectedTag.length!=0 && (
