@@ -36,13 +36,15 @@ export default function Home({posts}:Post) {
 
   const handleChangeText = () => {
     const hashtagSelected = `#${inputValue}`
-    
+    console.log(selectedTag)
     setSelectedTag((prevTags:string[]) =>
       prevTags.includes(hashtagSelected)
-        ? prevTags.filter((t:string) => t !== hashtagSelected) 
+        ? [...prevTags] 
         : [...prevTags, hashtagSelected.toLocaleLowerCase()] 
       )
       setInputValue("")
+    if(selectedTag.includes(hashtagSelected.toLocaleLowerCase()))
+      alert("hashtag exists")
   }
   const handleSaveScroll = () => {    
     sessionStorage.setItem("scrollY", window.scrollY.toString())
