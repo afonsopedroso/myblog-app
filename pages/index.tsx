@@ -31,7 +31,7 @@ export default function Home({posts}:Post) {
   const [inputValue, setInputValue] = useState("");
   
   const handleChangeText = () => {
-    let hashtagSelected = `#${inputValue}`
+    const hashtagSelected = `#${inputValue}`
     
     setSelectedTag((prevTags:string[]) =>
       prevTags.includes(hashtagSelected)
